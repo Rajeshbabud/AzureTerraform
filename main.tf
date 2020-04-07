@@ -10,4 +10,6 @@ resource "azurerm_resource_group" "app-gw-poc" {
 
 module "agw-module-appservice" {
   source = "./appservice"
+  resource-group-location                                 = var.resource-group-location
+  resource-group-name                                     = var.resource-group-name
 }
