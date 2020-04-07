@@ -10,8 +10,8 @@ locals {
 
 resource "azurerm_application_gateway" "network" {
   name                = "example-appgateway"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
+  resource_group_name = var.resource-group-name
+  location            = var.resource-group-location
 
   sku {
     name     = "Standard_Small"
@@ -21,7 +21,7 @@ resource "azurerm_application_gateway" "network" {
 
   gateway_ip_configuration {
     name      = "my-gateway-ip-configuration"
-    subnet_id = azurerm_subnet.frontend.id
+    subnet_id = var.subnet_frontend_id
   }
 
   frontend_port {
@@ -31,7 +31,7 @@ resource "azurerm_application_gateway" "network" {
 
   frontend_ip_configuration {
     name                 = local.frontend_ip_configuration_name
-    public_ip_address_id = azurerm_public_ip.example.id
+    public_ip_address_id = var.rajvent_pip_id
   }
 
   backend_address_pool {
