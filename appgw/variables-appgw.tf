@@ -10,3 +10,11 @@ variable "vnet_name" {
   description ="Vnet name"
 }
 
+variable "rav_vnet_pip" {
+    description ="vnet PIP"
+}
+
+variable "subnet_frontend_id" {
+    description = "Subnet frontend Id"
+}
+
