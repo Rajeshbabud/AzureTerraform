@@ -5,7 +5,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-    name     = "app-gw-poc"
+    name     = var.resource-group-name
     location = var.resource-group-location
 }
 module "agw-module-appservice" {
