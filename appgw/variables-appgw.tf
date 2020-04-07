@@ -5,3 +5,8 @@ variable "resource-group-location" {
 variable "resource-group-name" {
   description ="Resource Group name."
 }
+
+variable "vnet_name" {
+  description ="Vnet name"
+}
+
