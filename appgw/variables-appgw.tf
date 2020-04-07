@@ -10,7 +10,7 @@ variable "vnet_name" {
   description ="Vnet name"
 }
 
-variable "rav_vnet_pip" {
+variable "rajvent_pip_id" {
     description ="vnet PIP"
 }
 
