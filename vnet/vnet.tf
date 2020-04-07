@@ -8,16 +8,18 @@ resource "azurerm_virtual_network" "vnet" {
  
 resource "azurerm_subnet" "frontend" {
     name                = "frontend"
-    location            = var.resource-group-location
+    virtual_network_name = azurerm_virtual_network.vnet.name
     resource_group_name = var.resource-group-name
     address_prefix      = "10.0.1.0/24"
 }
+
 resource "azurerm_subnet" "backend" { 
     name                = "backend"
-    location            = var.resource-group-location
+    virtual_network_name = azurerm_virtual_network.vnet.name
     resource_group_name = var.resource-group-name
     address_prefix      = "10.0.1.0/24"
 }
+
 resource "azurerm_public_ip" "pip" {
     name                = "rajvnet-pip"
     location            = var.resource-group-location
