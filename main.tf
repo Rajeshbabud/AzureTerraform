@@ -20,10 +20,3 @@ module "vnet" {
   resource-group-location                                 = var.resource-group-location
   resource-group-name                                     = azurerm_resource_group.rg.name
 }
-
-module "applicationgateway" {
-  source = "./appgw"
-  resource-group-location                                 = var.resource-group-location
-  resource-group-name                                     = azurerm_resource_group.rg.name
-  vnet_name                                               = var.vnet_name
-}
