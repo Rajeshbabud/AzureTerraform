@@ -25,4 +25,5 @@ module "vm" {
   source = "./vm"
   resource-group-location                                 = var.resource-group-location
   resource-group-name                                     = azurerm_resource_group.rg.name
+  subnet_frontend_id                                      = module.vnet.subnet_frontend_id
 }
