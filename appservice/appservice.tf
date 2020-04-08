@@ -16,7 +16,6 @@ resource "azurerm_app_service" "poc-app" {
   location                 = var.resource-group-location
   resource_group_name      = var.resource-group-name
   app_service_plan_id      = azurerm_app_service_plan.poc.id
-  virtual_network_name     = var.vnet_name
   site_config {
     linux_fx_version = "JAVA|11-java11"
     java_version = "11"
