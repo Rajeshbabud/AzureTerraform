@@ -13,7 +13,7 @@ resource "azurerm_subnet" "frontend" {
     address_prefix      = "10.0.1.0/24"
 }
 
-resource "azurerm_subnet" "vmsubmet" {
+resource "azurerm_subnet" "vm" {
     name                = "vmsubnet"
     virtual_network_name = azurerm_virtual_network.vnet.name
     resource_group_name = var.resource-group-name

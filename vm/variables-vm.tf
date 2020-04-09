@@ -6,6 +6,6 @@ variable "resource-group-name" {
   description ="Resource Group name."
 }
 
-variable "subnet_frontend_id" {
+variable "subnet_vm_id" {
   description ="Subnet Id"
 }
