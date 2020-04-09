@@ -61,5 +61,4 @@ resource "azurerm_application_gateway" "network" {
     backend_address_pool_name  = local.backend_address_pool_name
     backend_http_settings_name = local.http_setting_name
   }
-  depends_on                   = [azurerm_virtual_network.vnet, azurerm_subnet.frontend]
 }
