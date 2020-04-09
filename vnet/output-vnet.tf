@@ -29,6 +29,11 @@ output "subnet_backend_id" {
   value       = azurerm_subnet.backend.id
 }
 
+output "subnet_vm_id" {
+  description = "The ids of subnets created inside the newl vNet"
+  value       = azurerm_subnet.vmsubnet.id
+}
+
 output "rajvent_pip_id" {
   description = "The ids of Public IP"
   value       = azurerm_public_ip.pip.id

@@ -5,7 +5,7 @@ resource "azurerm_network_interface" "main" {
 
   ip_configuration {
     name                          = "testconfiguration1"
-    subnet_id                     = var.subnet_frontend_id
+    subnet_id                     = var.subnet_vm_id
     private_ip_address_allocation = "Dynamic"
   }
 }
@@ -36,7 +36,7 @@ resource "azurerm_virtual_machine" "main" {
     managed_disk_type = "Standard_LRS"
   }
   os_profile {
-    computer_name  = "hostname"
+    computer_name  = "rajvm"
     admin_username = "testadmin"
     admin_password = "Password1234!"
   }
