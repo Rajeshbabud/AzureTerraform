@@ -33,7 +33,7 @@ module "app-gateway" {
   resource-group-location                                 = var.resource-group-location
   resource-group-name                                     = azurerm_resource_group.rg.name
   subnet_frontend_id                                      = module.vnet.subnet_frontend_id
-  vnet_name                                               = module.vnet.name
+  vnet_name                                               = module.vnet.vnet_name
   rajvent_pip_id                                          = module.vnet.rajvent_pip_id 
 }
 
