@@ -7,7 +7,7 @@ resource "azurerm_monitor_action_group" "ccs-actiongroup" {
 resource "azurerm_monitor_metric_alert" "cpu-alert" {
   name                = "cpu-usage-alert"
   resource_group_name = var.resource-group-name
-  scopes              = [var.app-service-plan-poc-id]
+  scopes              = [var.app-service-poc-id]
   description         = "Action will be triggered when CPU usage is more than 70 percentage."
 
   criteria {
@@ -15,7 +15,7 @@ resource "azurerm_monitor_metric_alert" "cpu-alert" {
     metric_name      = "CpuPercentage"
     aggregation      = "Average"
     operator         = "GreaterThan"
-    threshold        = 80
+    threshold        = 1
 
     dimension {
       name     = "Instance"
@@ -32,7 +32,7 @@ resource "azurerm_monitor_metric_alert" "cpu-alert" {
 resource "azurerm_monitor_metric_alert" "memory-alert" {
   name = "memory-usage-alert"
   resource_group_name = var.resource-group-name
-  scopes = [var.app-service-plan-poc-id]
+  scopes = [var.app-service-poc-id]
   description = "Action will be triggered when Memory usage is more than 50 percentage."
 
   criteria {
@@ -40,7 +40,7 @@ resource "azurerm_monitor_metric_alert" "memory-alert" {
     metric_name = "MemoryPercentage"
     aggregation = "Average"
     operator = "GreaterThan"
-    threshold = 80
+    threshold = 1
 
     dimension {
       name = "Instance"
