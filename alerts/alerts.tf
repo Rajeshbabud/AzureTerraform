@@ -11,7 +11,7 @@ resource "azurerm_monitor_metric_alert" "cpu-alert" {
   description         = "Action will be triggered when CPU usage is more than 70 percentage."
 
   criteria {
-    metric_namespace = "Microsoft.Web/servefarms"
+    metric_namespace = "Microsoft.Web/serverfarms"
     metric_name      = "CpuPercentage"
     aggregation      = "Average"
     operator         = "GreaterThan"
@@ -36,7 +36,7 @@ resource "azurerm_monitor_metric_alert" "memory-alert" {
   description = "Action will be triggered when Memory usage is more than 50 percentage."
 
   criteria {
-    metric_namespace = "Microsoft.Web/servefarms"
+    metric_namespace = "Microsoft.Web/serverfarms"
     metric_name = "MemoryPercentage"
     aggregation = "Average"
     operator = "GreaterThan"
