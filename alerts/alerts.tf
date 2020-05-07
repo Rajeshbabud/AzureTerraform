@@ -1,6 +1,7 @@
 resource "azurerm_monitor_action_group" "ccs-actiongroup" {
   name                = "vijay-dev-alertgroup"
   resource_group_name = var.resource-group-name
+  short_name          = "testalert"
 }
 
 resource "azurerm_monitor_metric_alert" "cpu-alert" {
