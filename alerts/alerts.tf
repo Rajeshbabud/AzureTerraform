@@ -6,6 +6,7 @@ resource "azurerm_monitor_action_group" "ccs-actiongroup" {
   webhook_receiver {
     name        = "MoogSoft"
     service_uri = "https://aiops.aa.com/ingestions/azure-lab"
+    use_common_alert_schema = true
   }
 
 }
