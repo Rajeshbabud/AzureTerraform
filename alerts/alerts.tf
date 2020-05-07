@@ -2,16 +2,33 @@ resource "azurerm_monitor_action_group" "ccs-actiongroup" {
   name                = "vijay-dev-alertgroup"
   resource_group_name = var.resource-group-name
   short_name          = "testalert"
+
+  sms_receiver {
+    name         = "oncallmsg"
+    country_code = "1"
+    phone_number = "3615222495"
+  }
+
+  voice_receiver {
+    name         = "remotesupport"
+    country_code = "1"
+    phone_number = "5203285084"
+  }
+   email_receiver {
+    name                    = "test email"
+    email_address           = "Rajeshbabu.Devarapalli@aa.com"
+    use_common_alert_schema = true
+  }
 }
 
 resource "azurerm_monitor_metric_alert" "cpu-alert" {
   name                = "cpu-usage-alert"
   resource_group_name = var.resource-group-name
-  scopes              = [var.app-service-poc-id]
+  scopes              = [var.app-service-plan-poc-id]
   description         = "Action will be triggered when CPU usage is more than 70 percentage."
 
   criteria {
-    metric_namespace = "Microsoft.Web/sites"
+    metric_namespace = "Microsoft.Web/serverfarms"
     metric_name      = "CpuPercentage"
     aggregation      = "Average"
     operator         = "GreaterThan"
@@ -32,11 +49,11 @@ resource "azurerm_monitor_metric_alert" "cpu-alert" {
 resource "azurerm_monitor_metric_alert" "memory-alert" {
   name = "memory-usage-alert"
   resource_group_name = var.resource-group-name
-  scopes = [var.app-service-poc-id]
+  scopes = [var.app-service-plan-poc-id]
   description = "Action will be triggered when Memory usage is more than 50 percentage."
 
   criteria {
-    metric_namespace = "Microsoft.Web/sites"
+    metric_namespace = "Microsoft.Web/serverfarms"
     metric_name = "MemoryPercentage"
     aggregation = "Average"
     operator = "GreaterThan"
