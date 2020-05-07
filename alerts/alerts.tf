@@ -1,12 +1,17 @@
 resource "azurerm_monitor_action_group" "ccs-actiongroup" {
-  name                = "vijay-dev-alertgroup"
+  name                = "Rajesh-test-alertgroup"
   resource_group_name = var.resource-group-name
   short_name          = "testalert"
+
+  webhook_receiver {
+    name        = "MoogSoft"
+    service_uri = "https://aiops.aa.com/ingestions/azure-lab"
+  }
 
 }
 
 resource "azurerm_monitor_metric_alert" "cpu-alert" {
-  name                = "cpu-usage-alert"
+  name                = "Rajesh-cpu-usage-alert"
   resource_group_name = var.resource-group-name
   scopes              = [var.app-service-plan-poc-id]
   description         = "Action will be triggered when CPU usage is more than 70 percentage."
@@ -31,7 +36,7 @@ resource "azurerm_monitor_metric_alert" "cpu-alert" {
 }
 
 resource "azurerm_monitor_metric_alert" "memory-alert" {
-  name = "memory-usage-alert"
+  name = "Rajesh-memory-usage-alert"
   resource_group_name = var.resource-group-name
   scopes = [var.app-service-plan-poc-id]
   description = "Action will be triggered when Memory usage is more than 50 percentage."
