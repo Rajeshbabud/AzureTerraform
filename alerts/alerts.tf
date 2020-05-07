@@ -15,7 +15,7 @@ resource "azurerm_monitor_metric_alert" "cpu-alert" {
     metric_name      = "CpuPercentage"
     aggregation      = "Average"
     operator         = "GreaterThan"
-    threshold        = 1
+    threshold        = 80
 
     dimension {
       name     = "Instance"
@@ -40,7 +40,7 @@ resource "azurerm_monitor_metric_alert" "memory-alert" {
     metric_name = "MemoryPercentage"
     aggregation = "Average"
     operator = "GreaterThan"
-    threshold = 1
+    threshold = 80
 
     dimension {
       name = "Instance"

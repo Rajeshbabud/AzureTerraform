@@ -7,5 +7,9 @@ variable "resource-group-name" {
 }
 
 variable "app-service-plan-poc-id" {
+  description ="App Service Plan ID"
+}
+
+variable "app-service-poc-id" {
   description ="App Service ID"
 }

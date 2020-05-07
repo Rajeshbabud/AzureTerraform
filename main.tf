@@ -20,6 +20,7 @@ module "alerts" {
   resource-group-location                                 = var.resource-group-location
   resource-group-name                                     = azurerm_resource_group.rg.name
   app-service-plan-poc-id                                 = module.appservice.app-service-plan-poc-id
+  app-service-poc-id                                      = module.appservice.app-service-poc-id
 }
 
 #module "vnet" {
