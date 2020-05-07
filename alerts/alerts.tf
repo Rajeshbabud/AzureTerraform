@@ -3,22 +3,6 @@ resource "azurerm_monitor_action_group" "ccs-actiongroup" {
   resource_group_name = var.resource-group-name
   short_name          = "testalert"
 
-  sms_receiver {
-    name         = "oncallmsg"
-    country_code = "1"
-    phone_number = "3615222495"
-  }
-
-  voice_receiver {
-    name         = "remotesupport"
-    country_code = "1"
-    phone_number = "5203285084"
-  }
-   email_receiver {
-    name                    = "test email"
-    email_address           = "Rajeshbabu.Devarapalli@aa.com"
-    use_common_alert_schema = true
-  }
 }
 
 resource "azurerm_monitor_metric_alert" "cpu-alert" {
