@@ -10,6 +10,7 @@ resource "azurerm_resource_group" "rg" {
 }
 
 module "appservice" {
+  source = "./appservice"
   resource-group-location                                 = var.resource-group-location
   resource-group-name                                     = azurerm_resource_group.rg.name
 }
