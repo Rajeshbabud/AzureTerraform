@@ -10,7 +10,6 @@ resource "azurerm_resource_group" "rg" {
 }
 
 module "appservice" {
-  source = "./appservice"
   resource-group-location                                 = var.resource-group-location
   resource-group-name                                     = azurerm_resource_group.rg.name
 }
@@ -21,6 +20,13 @@ module "alerts" {
   resource-group-name                                     = azurerm_resource_group.rg.name
   app-service-plan-poc-id                                 = module.appservice.app-service-plan-poc-id
   app-service-poc-id                                      = module.appservice.app-service-poc-id
+  appinsights_id                                          = module.appinsights.appinsights_id
+}
+
+module "appinsights" {
+  source = "./appinsights"
+  resource-group-location                                 = var.resource-group-location
+  resource-group-name                                     = azurerm_resource_group.rg.name
 }
 
 #module "vnet" {
