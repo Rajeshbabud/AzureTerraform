@@ -1,16 +1,10 @@
-data "azurerm_monitor_action_group" "raj-actiongroup" {
-  name                = Rajesh-test-alertgroup
-  resource_group_name = var.resource-group-name
-}
-
-
 resource "azurerm_monitor_scheduled_query_rules_alert" "example" {
   name                = "Rajesh-custom-query"
   location            = var.resource-group-location
   resource_group_name = var.resource-group-name
 
   action {
-    action_group           = [data.azurerm_monitor_action_group.raj-actiongroup.id]
+    action_group           = [azurerm_monitor_action_group.raj-actiongroup.id]
     email_subject          = "Email Header"
     custom_webhook_payload = "{}"
   }
