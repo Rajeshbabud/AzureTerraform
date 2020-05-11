@@ -1,4 +1,4 @@
-resource "azurerm_monitor_action_group" "ccs-actiongroup" {
+resource "azurerm_monitor_action_group" "raj-actiongroup" {
   name                = "Rajesh-test-alertgroup"
   resource_group_name = var.resource-group-name
   short_name          = "testalert"
@@ -32,7 +32,7 @@ resource "azurerm_monitor_metric_alert" "cpu-alert" {
   }
 
   action {
-    action_group_id = azurerm_monitor_action_group.ccs-actiongroup.id
+    action_group_id = azurerm_monitor_action_group.raj-actiongroup.id
   }
 }
 
@@ -57,7 +57,7 @@ resource "azurerm_monitor_metric_alert" "memory-alert" {
   }
 
   action {
-    action_group_id = azurerm_monitor_action_group.ccs-actiongroup.id
+    action_group_id = azurerm_monitor_action_group.raj-actiongroup.id
   }
 } 
 
@@ -67,7 +67,7 @@ resource "azurerm_monitor_scheduled_query_rules_alert" "example" {
   resource_group_name = var.resource-group-name
 
   action {
-    action_group           = [azurerm_monitor_action_group.ccs-actiongroup.id]
+    action_group           = azurerm_monitor_action_group.raj-actiongroup.id
     email_subject          = "Email Header"
     custom_webhook_payload = "{}"
   }
@@ -77,7 +77,7 @@ resource "azurerm_monitor_scheduled_query_rules_alert" "example" {
   # Count all requests with server error result code grouped into 5-minute bins
   query       = <<-QUERY
   traces
-    | where message contains "Exception" and cloud_RoleName == "aa-oh-test-appservice-ccs"  
+    | where message contains "Exception" and cloud_RoleInstance == "aa-oh-test-appservice-ccs"  
   QUERY
   severity    = 1
   frequency   = 5
