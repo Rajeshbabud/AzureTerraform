@@ -15,14 +15,14 @@ resource "azurerm_monitor_metric_alert" "cpu-alert" {
   name                = "Rajesh-cpu-usage-alert"
   resource_group_name = var.resource-group-name
   scopes              = [var.app-service-plan-poc-id]
-  description         = "Action will be triggered when CPU usage is more than 70 percentage."
-
+  description         = "Action will be triggered when CPU usage is more than 90 percentage."
+  severity            = 3
   criteria {
     metric_namespace = "Microsoft.Web/serverfarms"
     metric_name      = "CpuPercentage"
     aggregation      = "Average"
     operator         = "GreaterThan"
-    threshold        = 1
+    threshold        = 90
 
     dimension {
       name     = "Instance"
@@ -40,14 +40,14 @@ resource "azurerm_monitor_metric_alert" "memory-alert" {
   name = "Rajesh-memory-usage-alert"
   resource_group_name = var.resource-group-name
   scopes = [var.app-service-plan-poc-id]
-  description = "Action will be triggered when Memory usage is more than 50 percentage."
-
+  description = "Action will be triggered when Memory usage is more than 90 percentage."
+  severity            = 3
   criteria {
     metric_namespace = "Microsoft.Web/serverfarms"
     metric_name = "MemoryPercentage"
     aggregation = "Average"
     operator = "GreaterThan"
-    threshold = 1
+    threshold = 90
 
     dimension {
       name = "Instance"
@@ -67,7 +67,7 @@ resource "azurerm_monitor_scheduled_query_rules_alert" "example" {
   resource_group_name = var.resource-group-name
 
   action {
-    action_group           = azurerm_monitor_action_group.raj-actiongroup.id
+    action_group           = [azurerm_monitor_action_group.raj-actiongroup.id]
     email_subject          = "Email Header"
     custom_webhook_payload = "{}"
   }
