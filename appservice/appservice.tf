@@ -11,6 +11,19 @@ resource "azurerm_app_service_plan" "poc" {
   }
 }
 
+resource "azurerm_app_service_plan" "test" {
+  name                = "test-appserviceplan"
+  location            = var.resource-group-location
+  resource_group_name = var.resource-group-name
+  kind                = "Linux"
+  reserved            = true
+
+  sku {
+    tier = "Standard"
+    size = "S1"
+  }
+}
+
 resource "azurerm_app_service" "poc-app" {
   name                     = "agw-appservice-poc"
   location                 = var.resource-group-location
