@@ -26,10 +26,10 @@ resource "azurerm_monitor_action_group" "raj-actiongroup" {
 }
 
 resource "azurerm_monitor_metric_alert" "cpu-alert" {
-  count               = length(app-service-plan-id-list)
-  name                = "Rajesh-cpu-usage-alert-${app-service-plan-id-list[count.index].name}"
+  count               = length(local.app-service-plan-id-list)
+  name                = "cpu-usage-alert-${local.app-service-plan-id-list[count.index].name}"
   resource_group_name = var.resource-group-name
-  scopes              = app-service-plan-id-list[count.index].planId
+  scopes              = [local.app-service-plan-id-list[count.index].planId]
   description         = "Action will be triggered when CPU usage is more than 90 percentage."
   severity            = 3
   criteria {
@@ -52,17 +52,18 @@ resource "azurerm_monitor_metric_alert" "cpu-alert" {
 }
 
 resource "azurerm_monitor_metric_alert" "memory-alert" {
-  name = "Rajesh-memory-usage-alert"
+  count               = length(app-service-plan-id-list)
+  name                = "Rajesh-memory-usage-alert"
   resource_group_name = var.resource-group-name
-  scopes = [var.app-service-plan-poc-id]
-  description = "Action will be triggered when Memory usage is more than 90 percentage."
+  scopes              = [var.app-service-plan-poc-id]
+  description         = "Action will be triggered when Memory usage is more than 90 percentage."
   severity            = 3
   criteria {
-    metric_namespace = "Microsoft.Web/serverfarms"
-    metric_name = "MemoryPercentage"
-    aggregation = "Average"
-    operator = "GreaterThan"
-    threshold = 90
+    metric_namespace  = "Microsoft.Web/serverfarms"
+    metric_name       = "MemoryPercentage"
+    aggregation       = "Average"
+    operator          = "GreaterThan"
+    threshold         = 90
 
     dimension {
       name = "Instance"
