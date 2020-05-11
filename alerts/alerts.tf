@@ -14,7 +14,7 @@ resource "azurerm_monitor_action_group" "raj-actiongroup" {
 resource "azurerm_monitor_metric_alert" "cpu-alert" {
   name                = "Rajesh-cpu-usage-alert"
   resource_group_name = var.resource-group-name
-  scopes              = [var.app-service-plan-poc-id, var.app-service-plan-test-id]
+  scopes              = > toset([var.app-service-plan-poc-id, var.app-service-plan-test-id])
   description         = "Action will be triggered when CPU usage is more than 90 percentage."
   severity            = 3
   criteria {
