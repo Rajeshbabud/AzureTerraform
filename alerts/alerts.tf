@@ -1,3 +1,17 @@
+locals {
+  app-service-plan-id-list = [
+    {
+      planId = var.app-service-plan-poc-id,
+      name  = "poc-appservice-plan"
+    },
+
+    {
+      planId =var.app-service-plan-test-id,
+      name  = "test-appservice-plan"
+    }
+  ]
+}
+
 resource "azurerm_monitor_action_group" "raj-actiongroup" {
   name                = "Rajesh-test-alertgroup"
   resource_group_name = var.resource-group-name
@@ -12,9 +26,10 @@ resource "azurerm_monitor_action_group" "raj-actiongroup" {
 }
 
 resource "azurerm_monitor_metric_alert" "cpu-alert" {
-  name                = "Rajesh-cpu-usage-alert"
+  count               = length(app-service-plan-id-list)
+  name                = "Rajesh-cpu-usage-alert-${app-service-plan-id-list[count.index].name}"
   resource_group_name = var.resource-group-name
-  scopes              = > toset([var.app-service-plan-poc-id, var.app-service-plan-test-id])
+  scopes              = app-service-plan-id-list[count.index].planId
   description         = "Action will be triggered when CPU usage is more than 90 percentage."
   severity            = 3
   criteria {
