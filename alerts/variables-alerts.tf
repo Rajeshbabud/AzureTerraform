@@ -13,3 +13,7 @@ variable "app-service-plan-poc-id" {
 variable "app-service-poc-id" {
   description ="App Service ID"
 }
+
+variable "appinsights_id" {
+  description ="AppInsights Id"
+}
