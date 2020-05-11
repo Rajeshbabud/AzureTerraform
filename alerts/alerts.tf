@@ -52,10 +52,10 @@ resource "azurerm_monitor_metric_alert" "cpu-alert" {
 }
 
 resource "azurerm_monitor_metric_alert" "memory-alert" {
-  count               = length(app-service-plan-id-list)
-  name                = "Rajesh-memory-usage-alert"
+  count               = length(local.app-service-plan-id-list)
+  name                = "memory-usage-alert-${local.app-service-plan-id-list[count.index].name}"
   resource_group_name = var.resource-group-name
-  scopes              = [var.app-service-plan-poc-id]
+  scopes              = [local.app-service-plan-id-list[count.index].planId]
   description         = "Action will be triggered when Memory usage is more than 90 percentage."
   severity            = 3
   criteria {
