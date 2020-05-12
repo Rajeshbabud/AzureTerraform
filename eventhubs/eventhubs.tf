@@ -6,5 +6,4 @@ resource "azurerm_eventhub_namespace" "raj-eventhub-namespace" {
   capacity            = 2
   auto_inflate_enabled = true
   maximum_throughput_units = 20
-  tags = var.resource-group-tags
 }
