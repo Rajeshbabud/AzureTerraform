@@ -20,3 +20,7 @@ variable "app-service-poc-id" {
 variable "appinsights_id" {
   description ="AppInsights Id"
 }
+
+variable "eventhubs-raj-id" {
+  description ="Raj EventHub NameSpace ID"
+}

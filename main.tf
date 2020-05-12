@@ -15,6 +15,13 @@ module "appservice" {
   resource-group-name                                     = azurerm_resource_group.rg.name
 }
 
+module "eventhub" {
+  source = "./eventhubs"
+  resource-group-location                                 = var.resource-group-location
+  resource-group-name                                     = azurerm_resource_group.rg.name
+}
+
+
 module "alerts" {
   source = "./alerts"
   resource-group-location                                 = var.resource-group-location
@@ -22,7 +29,8 @@ module "alerts" {
   app-service-plan-poc-id                                 = module.appservice.app-service-plan-poc-id
   app-service-poc-id                                      = module.appservice.app-service-poc-id
   app-service-plan-test-id                                 = module.appservice.app-service-plan-test-id
-  appinsights_id                                          = module.appinsights.appinsights_id
+  appinsights_id                                          = module.eventhubs.eventhubs-raj-id
+  eventhubs-raj-id
 }
 
 module "appinsights" {
