@@ -39,10 +39,7 @@ resource "azurerm_monitor_scheduled_query_rules_alert" "loganalytics" {
   description    = "Alert when total results cross threshold"
   enabled        = true
   # Count all requests with server error result code grouped into 5-minute bins
-  query       = <<-QUERY
-  AppServiceConsoleLogs
-           | where ResultDescription contains "ERROR"
-  QUERY
+  query       = var.query
   severity    = 3
   frequency   = 5
   time_window = 30

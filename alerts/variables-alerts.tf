@@ -28,3 +28,7 @@ variable "eventhubs-raj-id" {
 variable "loganalytics-workspace-id" {
   description ="LogAnalytics WorkSpaceID"
 }
+
+variable "query" {
+  description = "Query"
+}

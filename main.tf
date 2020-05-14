@@ -32,6 +32,7 @@ module "alerts" {
   appinsights_id                                          = module.appinsights.appinsights_id
   eventhubs-raj-id                                        = module.eventhub.eventhubs-raj-id
   loganalytics-workspace-id                               = module.loganalytics.loganalytics-workspace-id
+  query                                                   = "<<-QUERY AppServiceConsoleLogs | where _ResourceId contains 'cdr' and ResultDescription contains 'ClientKafkaTemplate Sucessfully written message to Client topic' | summarize  count() QUERY"
 }
 
 module "appinsights" {
