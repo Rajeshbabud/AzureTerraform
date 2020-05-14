@@ -24,3 +24,30 @@ resource "azurerm_monitor_scheduled_query_rules_alert" "example" {
     threshold = 3
   }
 }
+
+resource "azurerm_monitor_scheduled_query_rules_alert" "loganalytics" {
+  name                = "loganalytics-custom-query"
+  location            = var.resource-group-location
+  resource_group_name = var.resource-group-name
+
+  action {
+    action_group           = [azurerm_monitor_action_group.raj-actiongroup.id]
+    email_subject          = "Email Header"
+    custom_webhook_payload = "{}"
+  }
+  data_source_id = var.loganalytics-workspace-id
+  description    = "Alert when total results cross threshold"
+  enabled        = true
+  # Count all requests with server error result code grouped into 5-minute bins
+  query       = <<-QUERY
+  AppServiceConsoleLogs
+           | where ResultDescription contains "ERROR"
+  QUERY
+  severity    = 3
+  frequency   = 5
+  time_window = 30
+  trigger {
+    operator  = "GreaterThan"
+    threshold = 5
+  }
+}

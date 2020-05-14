@@ -31,10 +31,17 @@ module "alerts" {
   app-service-plan-test-id                                = module.appservice.app-service-plan-test-id
   appinsights_id                                          = module.appinsights.appinsights_id
   eventhubs-raj-id                                        = module.eventhub.eventhubs-raj-id
+  loganalytics-workspace-id                               = module.loganalytics.loganalytics-workspace-id
 }
 
 module "appinsights" {
   source = "./appinsights"
+  resource-group-location                                 = var.resource-group-location
+  resource-group-name                                     = azurerm_resource_group.rg.name
+}
+
+module "loganalytics" {
+  source = "./loganalytics"
   resource-group-location                                 = var.resource-group-location
   resource-group-name                                     = azurerm_resource_group.rg.name
 }

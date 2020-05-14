@@ -24,3 +24,7 @@ variable "appinsights_id" {
 variable "eventhubs-raj-id" {
   description ="Raj EventHub NameSpace ID"
 }
+
+variable "loganalytics-workspace-id" {
+  description ="LogAnalytics WorkSpaceID"
+}
